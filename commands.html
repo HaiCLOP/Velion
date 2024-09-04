@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <meta property="og:title" content="Velion Commands">
+    <meta property="og:description" content="Explore the powerful and versatile commands offered by Velion to enhance your Discord server experience.">
+    <meta property="og:url" content="https://velion.vercel.app/commands.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://velion.vercel.app/logo.png">
+    <title>Velion | Commands</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e; /* Deep Blue */
+            color: #f0f0f0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #16213e; /* Darker Blue */
+            color: #fff;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+            filter: drop-shadow(12px 8px 10px #f4a261); /* Gold Shadow */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f4a261; /* Gold */
+        }
+
+        /* Commands Section */
+        .commands {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .commands h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #f4a261; /* Gold */
+        }
+
+        .commands p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #f4a261;
+            border-radius: 5px;
+            background-color: #16213e;
+            color: #f0f0f0;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f4a261;
+            color: #16213e;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #e0a34d; /* Slightly darker gold */
+        }
+
+        .command-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .command-card {
+            background-color: #16213e;
+            border: 2px solid #f4a261;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .command-card h3 {
+            font-size: 24px;
+            color: #f4a261;
+            margin-bottom: 10px;
+        }
+
+        .command-card p {
+            font-size: 16px;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        .command-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #16213e; /* Darker Blue */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <img src="logo.png" alt="Velion" class="logo">
+            <ul>
+                <li><a href="index.html" title="home">Home</a></li>
+                <li><a href="about.html" title="about">About Us</a></li>
+                <li><a href="commands.html">Commands</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="blog.html">Updates</a></li>
+                <li><a href="Premium.html">Premium</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="commands">
+            <h2>Velion Commands</h2>
+            <p>Explore the powerful commands offered by Velion to enhance your Discord server. Whether you're looking for utility, fun, moderation, or premium features, Velion has you covered.</p>
+
+            <div class="search-bar">
+                <input type="text" id="commandSearch" onkeyup="searchCommands()" placeholder="Search for commands...">
+            </div>
+
+            <div class="filter-buttons">
+                <button onclick="filterCommands('all')">All</button>
+                <button onclick="filterCommands('utility')">Utility</button>
+                <button onclick="filterCommands('fun')">Fun</button>
+                <button onclick="filterCommands('moderation')">Moderation</button>
+                <button onclick="filterCommands('premium')">Premium</button>
+            </div>
+
+            <div class="command-list" id="command-list">
+                <!-- Utility Commands -->
+                <div class="command-card utility">
+                    <h3>/ping</h3>
+                    <p>Shows the latency of the bot and server.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/userinfo</h3>
+                    <p>Shows information about a user.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/serverinfo</h3>
+                    <p>Displays information about the server.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/avatar</h3>
+                    <p>Displays a user's avatar.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/define</h3>
+                    <p>Define a word.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/translate</h3>
+                    <p>Translate text to another language.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/generate_qr</h3>
+                    <p>Generate a QR code for a given link.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/weather</h3>
+                    <p>Get weather information.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/whois</h3>
+                    <p>Retrieves detailed information about a user.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/channelinfo</h3>
+                    <p>Shows details about a specific channel.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/poll</h3>
+                    <p>Creates a poll with up to 10 options.</p>
+                </div>
+                <div class="command-card utility">
+                    <h3>/presult</h3>
+                    <p>Displays the results of a poll.</p>
+                </div>
+
+                <!-- Fun Commands -->
+                <div class="command-card fun">
+                    <h3>/dice_roll</h3>
+                    <p>Rolls a dice for you.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/coinflip</h3>
+                    <p>Flips a coin for you.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/cat</h3>
+                    <p>Sends a picture or GIF of a cat.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/dog</h3>
+                    <p>Sends a picture or GIF of a dog.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/trivia</h3>
+                    <p>Starts a trivia quiz game.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/joke</h3>
+                    <p>Tells a random joke.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/8ball</h3>
+                    <p>Ask the magic 8-ball a question.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/meme</h3>
+                    <p>Sends a random meme from the internet.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/rps</h3>
+                    <p>Play rock-paper-scissors against the bot.</p>
+                </div>
+                <div class="command-card fun">
+                    <h3>/gif</h3>
+                    <p>Search for a random GIF.</p>
+                </div>
+
+                <!-- Moderation Commands -->
+                <div class="command-card moderation">
+                    <h3>/ban</h3>
+                    <p>Bans a user from the server.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/kick</h3>
+                    <p>Kicks a user from the server.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/mute</h3>
+                    <p>Mutes a user.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/unmute</h3>
+                    <p>Unmutes a user.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/warn</h3>
+                    <p>Warns a user.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/lock</h3>
+                    <p>Locks a channel.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/unlock</h3>
+                    <p>Unlocks a channel.</p>
+                </div>
+                <div class="command-card moderation">
+                    <h3>/slowmode</h3>
+                    <p>Enables slow mode in a channel.</p>
+                </div>
+
+                <!-- Premium Commands -->
+                <div class="command-card premium">
+                    <h3>/custom_embed</h3>
+                    <p>Create a custom embed message.</p>
+                </div>
+                <div class="command-card premium">
+                    <h3>/giveaway</h3>
+                    <p>Start a giveaway in the server.</p>
+                </div>
+                <div class="command-card premium">
+                    <h3>/poll</h3>
+                    <p>Start a poll with custom styling.</p>
+                </div>
+                <div class="command-card premium">
+                    <h3>/autorespond</h3>
+                    <p>Create an autoresponse for specific keywords.</p>
+                </div>
+                <div class="command-card premium">
+                    <h3>/filter</h3>
+                    <p>Filter out inappropriate language.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HaiCLOP. All rights reserved. Made with ❤️ by <a href="https://github.com/HAICLOP" target="_blank" style="color: #f4a261;">Velion Team</p>
+    </footer>
+
+    <script>
+        // JavaScript for searching commands
+        function searchCommands() {
+            const input = document.getElementById('commandSearch').value.toLowerCase();
+            const commandCards = document.getElementsByClassName('command-card');
+            
+            for (let i = 0; i < commandCards.length; i++) {
+                const card = commandCards[i];
+                const title = card.getElementsByTagName('h3')[0].textContent.toLowerCase();
+                const description = card.getElementsByTagName('p')[0].textContent.toLowerCase();
+                
+                if (title.includes(input) || description.includes(input)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        }
+
+        // JavaScript for filtering commands by category
+        function filterCommands(category) {
+            const commandCards = document.getElementsByClassName('command-card');
+            
+            for (let i = 0; i < commandCards.length; i++) {
+                const card = commandCards[i];
+                
+                if (category === 'all') {
+                    card.style.display = '';
+                } else {
+                    if (card.classList.contains(category)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

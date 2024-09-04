@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <meta property="og:title" content="Velion">
+    <meta property="og:description" content="A powerful and versatile bot designed to enhance your Discord server experience.">
+    <meta property="og:url" content="https://velion.vercel.app">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://velion.vercel.app/logo.png">
+    <title>Velion | Contact Us</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e; /* Deep Blue */
+            color: #f0f0f0;
+            transition: background-color 0.3s, color 0.3s;
+            scrollbar-width: thin;
+            scrollbar-color: #6c757d #121212;
+        }
+
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #121212;  /* Background of the scrollbar track */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #6c757d; /* Scrollbar thumb color */
+            border-radius: 6px;
+            border: 3px solid #121212; /* Padding around the scrollbar thumb */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #16213e; /* Darker Blue */
+            color: #fff;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+            filter: drop-shadow(12px 8px 10px #f4a261); /* Gold Shadow */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f4a261; /* Gold */
+        }
+
+        /* Contact Section */
+        .contact {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #f4a261; /* Gold */
+        }
+
+        .contact p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #16213e; /* Darker Blue */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        .contact form input, .contact form textarea {
+            width: calc(100% - 20px); /* Ensure padding doesn't cause overflow */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #1a1a2e; /* Deep Blue */
+            color: #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        .contact form input[type="submit"] {
+            background-color: #f4a261; /* Gold */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: calc(100% - 20px); /* Ensure button width doesn't cause overflow */
+            padding: 10px;
+        }
+
+        .contact form input[type="submit"]:hover {
+            background-color: #e59400; /* Darker Gold */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #16213e; /* Darker Blue */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const message = document.querySelector('textarea[name="message"]').value;
+            
+            const mailtoLink = `mailto:rynx_partnership@yahoo.com?subject=Contact from ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <img src="logo.png" alt="Velion Logo" class="logo">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="commands.html">Commands</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="blog.html">Updates</a></li>
+                <li><a href="Premium.html">Premium</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or would like to inquire about our bot or services, please fill out the form below, and we'll get back to you as soon as possible.</p>
+            <form onsubmit="sendEmail(event)">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <input type="submit" value="Send Message">
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2024 HaiCLOP. All rights reserved. Made with ❤️ by <a href="https://github.com/HAICLOP" target="_blank" style="color: #f4a261;">Velion Team</p>
+    </footer>
+</body>
+</html>

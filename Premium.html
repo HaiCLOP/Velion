@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velion | Store</title>
+    <link rel="icon" href="logo.png">
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e; /* Deep Blue */
+            color: #f0f0f0;
+            transition: background-color 0.3s, color 0.3s;
+            scrollbar-width: thin;
+            scrollbar-color: #6c757d #121212;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Scrollbar */
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #121212; 
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #6c757d; 
+            border-radius: 6px;
+            border: 3px solid #121212;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #16213e; /* Darker Blue */
+            color: #fff;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+            filter: drop-shadow(12px 8px 10px #f4a261); /* Gold Shadow */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f4a261; /* Gold */
+        }
+
+        /* Store Section */
+        .store {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .store h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #f4a261; /* Gold */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #16213e;
+            border: 1px solid #6c757d;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+            text-align: left;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-item h3 {
+            font-size: 24px;
+            color: #f4a261;
+            margin: 10px 0;
+        }
+
+        .product-item .price {
+            font-size: 20px;
+            color: #f4a261;
+            margin: 15px 0;
+        }
+
+        .product-item ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #d3d3d3;
+        }
+
+        .product-item ul li {
+            margin-bottom: 5px;
+        }
+
+        .product-item .buy-now {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #f4a261;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .product-item .buy-now:hover {
+            background-color: #e59400;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #16213e;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #f4a261;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <img src="logo.png" alt="Velion" class="logo">
+            <ul>
+                <li><a href="index.html" title="home">Home</a></li>
+                <li><a href="about.html" title="about">About Us</a></li>
+                <li><a href="services.html">Commands</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="blog.html">Updates</a></li>
+                <li><a href="Premium.html">Premium</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="store">
+            <h2>Velion Store</h2>
+            <p>Explore our premium features and elevate your Discord server experience.</p>
+            <div class="product-grid">
+                <div class="product-item">
+                    <h3>Lifetime Plan</h3>
+                    <p class="price">$49.99</p>
+                    <p>USD / lifetime, paid only once</p>
+                    <ul>
+                        <li>Biggest savings</li>
+                        <li>Fully refundable for 7 days</li>
+                        <li>Transferable to another server</li>
+                        <li>Bot Personalizer option included</li>
+                    </ul>
+                    <a href="#" class="buy-now">Get the Lifetime plan</a>
+                </div>
+                <div class="product-item">
+                    <h3>Yearly Plan</h3>
+                    <p class="price">$26.04</p>
+                    <p>USD / year, billed annually</p>
+                    <ul>
+                        <li>Affordable yearly option</li>
+                        <li>Access to all premium features</li>
+                        <li>Priority support</li>
+                        <li>Regular updates</li>
+                    </ul>
+                    <a href="#" class="buy-now">Get the Yearly plan</a>
+                </div>
+                <div class="product-item">
+                    <h3>Monthly Plan</h3>
+                    <p class="price">$2.99</p>
+                    <p>USD / month, billed monthly</p>
+                    <ul>
+                        <li>Flexible subscription</li>
+                        <li>Access to all premium features</li>
+                        <li>Cancel anytime</li>
+                        <li>Full support</li>
+                    </ul>
+                    <a href="#" class="buy-now">Get the Monthly plan</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Velion. All rights reserved. Made with ❤️ by <a href="https://github.com/HAICLOP" target="_blank">Velion Team</a></p>
+    </footer>
+</body>
+</html>
