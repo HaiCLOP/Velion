@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>404 Not Found | Velion</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 10rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #ff004d, #00f5d4);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #f2f2f2;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #00f5d4;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+      animation: glitch 2s infinite;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      animation: glitch 1.5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      animation: glitch 1.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch {
+      0% {
+        clip: rect(0, 900px, 0, 0);
+      }
+      10% {
+        clip: rect(0, 900px, 150px, 0);
+      }
+      20% {
+        clip: rect(0, 900px, 50px, 0);
+      }
+      30% {
+        clip: rect(0, 900px, 100px, 0);
+      }
+      40% {
+        clip: rect(0, 900px, 200px, 0);
+      }
+      50% {
+        clip: rect(0, 900px, 0, 0);
+      }
+      60% {
+        clip: rect(0, 900px, 80px, 0);
+      }
+      70% {
+        clip: rect(0, 900px, 60px, 0);
+      }
+      80% {
+        clip: rect(0, 900px, 100px, 0);
+      }
+      90% {
+        clip: rect(0, 900px, 30px, 0);
+      }
+      100% {
+        clip: rect(0, 900px, 0, 0);
+      }
+    }
+
+    .back-button {
+      background-color: #ff004d;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #00f5d4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="glitch" data-text="404">404</h1>
+    <h2>Oops! The page you were looking for doesn't exist.</h2>
+    <button class="back-button" onclick="window.location.href='/';">Go Back Home</button>
+  </div>
+</body>
+</html>
