@@ -171,6 +171,12 @@
             text-decoration: underline;
         }
     </style>
+    <script>
+        function showAlertAndRedirect() {
+            alert('Pay the exact amount as written in store. If you send less, no product will be received. Add a note and write your Discord ID there. After paying, please return.');
+            window.location.href = 'https://www.paypal.com/paypalme/RynxDevelopment';
+        }
+    </script>
 </head>
 <body>
     
@@ -203,7 +209,7 @@
                         <li>Transferable to another server</li>
                         <li>Bot Personalizer option included</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Lifetime plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Lifetime plan</a>
                 </div>
                 <div class="product-item">
                     <h3>Yearly Plan</h3>
@@ -215,7 +221,7 @@
                         <li>Priority support</li>
                         <li>Regular updates</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Yearly plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Yearly plan</a>
                 </div>
                 <div class="product-item">
                     <h3>Monthly Plan</h3>
@@ -227,7 +233,7 @@
                         <li>Cancel anytime</li>
                         <li>Full support</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Monthly plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Monthly plan</a>
                 </div>
             </div>
         </section>
