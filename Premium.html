@@ -149,44 +149,6 @@
             background-color: #e59400;
         }
 
-        /* FAQ Section */
-        .faq {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: left;
-            background-color: #16213e;
-            border-radius: 10px;
-            border: 1px solid #6c757d;
-        }
-
-        .faq h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #f4a261; /* Gold */
-        }
-
-        .faq-item {
-            margin-bottom: 20px;
-        }
-
-        .faq-item h3 {
-            font-size: 24px;
-            color: #f4a261;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .faq-item h3:hover {
-            color: #e59400; /* Hover Gold */
-        }
-
-        .faq-answer {
-            display: none;
-            color: #d3d3d3;
-            padding: 10px 0;
-        }
-
         /* Footer Styles */
         footer {
             background-color: #16213e;
@@ -209,6 +171,12 @@
             text-decoration: underline;
         }
     </style>
+    <script>
+        function showAlertAndRedirect() {
+            alert('Pay the exact amount as written in store. If you send less, no product will be received. Add a note and write your Discord ID there. After paying, please return.');
+            window.location.href = 'https://www.paypal.com/paypalme/RynxDevelopment';
+        }
+    </script>
 </head>
 <body>
     
@@ -241,7 +209,7 @@
                         <li>Transferable to another server</li>
                         <li>Bot Personalizer option included</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Lifetime plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Lifetime plan</a>
                 </div>
                 <div class="product-item">
                     <h3>Yearly Plan</h3>
@@ -253,7 +221,7 @@
                         <li>Priority support</li>
                         <li>Regular updates</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Yearly plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Yearly plan</a>
                 </div>
                 <div class="product-item">
                     <h3>Monthly Plan</h3>
@@ -265,12 +233,12 @@
                         <li>Cancel anytime</li>
                         <li>Full support</li>
                     </ul>
-                    <a href="#" class="buy-now">Get the Monthly plan</a>
+                    <a href="javascript:void(0);" class="buy-now" onclick="showAlertAndRedirect()">Get the Monthly plan</a>
                 </div>
             </div>
         </section>
-
-        <!-- FAQ Section -->
+    </main>
+     <!-- FAQ Section -->
         <section class="faq">
             <h2>Frequently Asked Questions (FAQ)</h2>
 
@@ -299,14 +267,14 @@
     <div class="faq-item">
         <h3>How can I Activate Velion Premium on my Discord server?</h3>
         <div class="faq-answer">
-            <p>Once you've purchased a premium plan, use the `/use_key <key>` command on your server to activate premium features. You will receive a unique key after payment, which can be used to activate Velion Premium.</p>
+            <p>Once you've purchased a premium plan, use the /use_key <key> command on your server to activate premium features. You will receive a unique key after payment, which can be used to activate Velion Premium.</p>
         </div>
     </div>
 
     <div class="faq-item">
         <h3>Can I transfer my Velion Premium subscription to another Discord server?</h3>
         <div class="faq-answer">
-            <p>Yes, Velion Premium subscriptions are transferable to another server. Use the `/transfer <new_server_id>` command to transfer your subscription. This feature is available for the lifetime and yearly plans.</p>
+            <p>Yes, Velion Premium subscriptions are transferable to another server. Use the /transfer <new_server_id> command to transfer your subscription. This feature is available for the lifetime and yearly plans.</p>
         </div>
     </div>
 
@@ -358,7 +326,11 @@
         <p>&copy; 2024 Velion | <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
     </footer>
 
-    <script>
+   
+    <footer>
+        <p>&copy; 2024 Velion. All rights reserved. Made with ❤️ by <a href="https://github.com/HAICLOP" target="_blank">Velion Team</a></p>
+    </footer>
+     <script>
         // FAQ Toggle
         document.querySelectorAll('.faq-item h3').forEach(item => {
             item.addEventListener('click', () => {
