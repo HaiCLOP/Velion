@@ -1,0 +1,488 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="flex flex-col h-screen bg-gray-900">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-purple-800 to-blue-900 p-4 shadow-md">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl pl-4 font-bold text-white"><span class="font-moonwalk text-3xl">Luna</span>.AI</h1>
+                <div class="flex space-x-3">
+                    <a href="{% url "newchat" %}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-md text-sm flex items-center transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        New Chat
+                    </a>
+                    {% comment %} <a href="{% url "reboot" %}" class="bg-[#6D12B0] hover:bg-[#5D02A0] text-white px-3 py-2 rounded-md text-sm flex items-center transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Reboot
+                    </a>
+                    <a href="{% url "poweroff" %}" class="bg-blue-600 hover:bg-blue-800 text-white px-3 py-2 rounded-md text-sm flex items-center transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none" />
+                            <line x1="12" y1="0" x2="12" y2="10" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        Power off
+                    </a> {% endcomment %}
+                </div>
+            </div>
+        </header>
+        <!-- Chat Container -->
+        <div class="flex-1 flex flex-col max-w-4xl mx-auto w-full p-4 overflow-hidden">
+            <!-- Messages Area -->
+            <div class="flex-1 overflow-y-auto mb-4 space-y-4 p-4 rounded-lg bg-gray-800" id="messagesArea">
+                {% for message in messages %}
+                    {% if message.sender == 'bot' %}
+                    {% if message.typing %}
+                    <script>
+                        setTimeout(function() {
+                            location.reload();
+                        }, 100);
+                    </script>
+                    <!-- AI Typing Indicator -->
+                    <div class="typing-indicator">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white mr-2">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5" />
+                                </svg>
+                            </div>
+                            <div class="bg-gray-700 p-3 rounded-2xl shadow-md">
+                                <div class="flex gap-2">
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce typing-dot-1"></div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce typing-dot-2"></div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce typing-dot-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <!-- AI Message -->
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-5 w-5"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5" />
+                            </svg>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-2xl shadow-md max-w-md">
+                            <p class="text-gray-200">{{ message.text }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if message.sender == 'user' %}
+                    <!-- User Message -->
+                    <div class="flex items-start justify-end">
+                        <div class="bg-blue-800 p-3 rounded-2xl shadow-md max-w-md">
+                            <p class="text-gray-200">{{ message.text }}</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-5 w-5"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+                
+            </div>
+            <!-- Input Area -->
+            <div class="bg-gray-800 rounded-lg shadow-md p-4">
+                <form class="flex items-center" id="chatForm" action="{% url 'chat' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="message" id="messageField" value="">
+                    <!-- Voice Button -->
+                    <div class="relative">
+                        <button type="button" 
+                                id="voiceButton"
+                                class="cursor-pointer bg-gray-700 text-gray-400 hover:text-purple-400 p-2 rounded-l-lg border-l border-t border-b border-gray-600 focus:outline-none transition-colors h-10 flex items-center justify-center z-20 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                        </button>
+                        
+                        <!-- Recording animation overlay -->
+                        <div id="recordingIndicator" class="hidden absolute inset-0 rounded-l-lg overflow-visible pointer-events-none z-50">
+                            <div class="absolute inset-0 rounded-lg bg-purple-600 opacity-30"></div>
+                            <div id="pulseCircle1" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-purple-500"></div>
+                            <div id="pulseCircle2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-purple-400"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Input -->
+                    <input type="text"
+                           id="messageInput"
+                           name="message_input"
+                           placeholder="Ask Luna"
+                           class="flex-1 bg-gray-700 border-t border-b border-gray-600 text-gray-200 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400 h-10 transition-colors" />
+                    
+                    <!-- Send Button -->
+                    <button type="submit"
+                            class="bg-gradient-to-r from-purple-700 to-blue-900 text-white py-2 px-4 rounded-r-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5"
+                             viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- CSS for Voice Animation Fallback -->
+            <style>
+                /* Pulse animation styles */
+                @keyframes pulse1 {
+                    0% { transform: translate(50%, 50%) scale(1); opacity: 0.9; }
+                    100% { transform: translate(50%, 50%) scale(1.5); opacity: 0.3; }
+                }
+                
+                @keyframes pulse2 {
+                    0% { transform: translate(50%, 50%) scale(1); opacity: 0.7; }
+                    100% { transform: translate(50%, 50%) scale(2); opacity: 0; }
+                }
+                
+                .pulse-animation-1 {
+                    transform: translate(50%, 50%) scale(2);
+                    animation: pulse1 800ms infinite alternate ease-in-out;
+                }
+                
+                .pulse-animation-2 {
+                    transform: translate(50%, 50%) scale(2);
+                    animation: pulse2 1200ms infinite ease-out;
+                }
+                
+                /* Force the recording indicator to show when recording */
+                #recordingIndicator.recording {
+                    display: block !important;
+                    opacity: 1 !important;
+                }
+
+                /* Typing animation styles */
+                .typing-dot-1 {
+                    animation-delay: 0s !important;
+                }
+                .typing-dot-2 {
+                    animation-delay: 0.1s !important;
+                }
+                .typing-dot-3 {
+                    animation-delay: 0.2s !important;
+                }
+            </style>
+            
+            <!-- Voice Recognition JavaScript -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Scroll to bottom function
+                    function scrollToBottom() {
+                        const messagesArea = document.getElementById('messagesArea');
+                        if (messagesArea) {
+                            messagesArea.scrollTop = messagesArea.scrollHeight;
+                        }
+                    }
+
+                    // Call scroll to bottom when page loads
+                    scrollToBottom();
+
+                    const voiceButton = document.getElementById('voiceButton');
+                    const messageInput = document.getElementById('messageInput');
+                    const chatForm = document.getElementById('chatForm');
+                    let isRecording = false;
+                    let recognition = null;
+                    let finalTranscript = '';
+                    
+                    // Handle form submission
+                    chatForm.addEventListener('submit', function(e) {
+                        // If there's no text, prevent empty submissions
+                        if (messageInput.value.trim() === '') {
+                            e.preventDefault();
+                            return;
+                        }
+                        
+                        try {
+                            // Copy the message to the hidden field for submission
+                            document.getElementById('messageField').value = messageInput.value.trim();
+                            
+                            // Log the submission
+                            console.log("Submitting message:", messageInput.value);
+                            
+                            // Scroll to bottom after submission
+                            setTimeout(scrollToBottom, 100);
+                            
+                            // Let form submit naturally to Django backend
+                            // The form will be submitted via POST and the page will refresh
+                        } catch (error) {
+                            console.error("Error during form submission:", error);
+                            // Prevent submission if there was an error
+                            e.preventDefault();
+                        }
+                    });
+                    
+                    // Pulse animation function
+                    function startPulseAnimation() {
+                        const pulseCircle1 = document.getElementById('pulseCircle1');
+                        const pulseCircle2 = document.getElementById('pulseCircle2');
+                        
+                        if (!pulseCircle1 || !pulseCircle2) {
+                            console.error('Pulse circles not found');
+                            return;
+                        }
+                        
+                        // Make elements visible
+                        pulseCircle1.style.display = 'block';
+                        pulseCircle2.style.display = 'block';
+                        
+                        // Add a class to make the element visible through CSS as well
+                        document.getElementById('recordingIndicator').classList.add('recording');
+                        
+                        // Try to use Web Animations API if supported
+                        if ('animate' in pulseCircle1) {
+                            try {
+                                // Stop any existing animations
+                                const animations1 = pulseCircle1.getAnimations ? pulseCircle1.getAnimations() : [];
+                                const animations2 = pulseCircle2.getAnimations ? pulseCircle2.getAnimations() : [];
+                                
+                                animations1.forEach(anim => anim.cancel());
+                                animations2.forEach(anim => anim.cancel());
+                                
+                                // Animation for the first circle
+                                const anim1 = pulseCircle1.animate([
+                                    { transform: 'translate(50%, 50%) scale(1)', opacity: 0.9 },
+                                    { transform: 'translate(50%, 50%) scale(1.5)', opacity: 0.3 }
+                                ], {
+                                    duration: 1000,
+                                    iterations: Infinity,
+                                    direction: 'alternate',
+                                    easing: 'ease-in-out'
+                                });
+                                
+                                // Animation for the second circle
+                                const anim2 = pulseCircle2.animate([
+                                    { transform: 'scale(1)', opacity: 0.7 },
+                                    { transform: 'scale(2)', opacity: 0 }
+                                ], {
+                                    duration: 1500,
+                                    iterations: Infinity,
+                                    easing: 'ease-out'
+                                });
+                                
+                                console.log('Animations started');
+                            } catch (e) {
+                                console.error('Animation error:', e);
+                                // Fallback to CSS animation if Web Animations API fails
+                                useCssAnimation();
+                            }
+                        } else {
+                            // Use CSS classes for browsers that don't support Web Animations API
+                            useCssAnimation();
+                        }
+                        
+                        // Fallback to CSS animation
+                        function useCssAnimation() {
+                            pulseCircle1.classList.add('pulse-animation-1');
+                            pulseCircle2.classList.add('pulse-animation-2');
+                        }
+                    }
+                    
+                    // Check if browser supports the Web Speech API
+                    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                        // Initialize speech recognition
+                        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                        recognition.continuous = true;
+                        recognition.interimResults = true;
+                        recognition.lang = 'en-US';
+                        
+                        // Handle results - now showing interim results
+                        recognition.onresult = function(event) {
+                            let interimTranscript = '';
+                            
+                            // Loop through the results
+                            for (let i = event.resultIndex; i < event.results.length; i++) {
+                                const transcript = event.results[i][0].transcript;
+                                
+                                if (event.results[i].isFinal) {
+                                    finalTranscript += transcript + ' ';
+                                } else {
+                                    interimTranscript += transcript;
+                                }
+                            }
+                            
+                            // Update the input field with the complete transcript
+                            // (both final and interim results)
+                            messageInput.value = finalTranscript + interimTranscript;
+                            
+                            // Visual feedback - make the input field change subtly when actively receiving speech
+                            if (interimTranscript) {
+                                messageInput.classList.add('border-purple-500');
+                            } else {
+                                messageInput.classList.remove('border-purple-500');
+                                
+                                // If the final result is complete and there's no more interim, this might be a good moment
+                                // to update the UI to show transcription has stabilized
+                                if (finalTranscript.trim() !== '') {
+                                    messageInput.classList.add('border-green-500');
+                                    setTimeout(() => {
+                                        messageInput.classList.remove('border-green-500');
+                                    }, 300);
+                                }
+                            }
+                        };
+                        
+                        // Handle end of speech recognition
+                        recognition.onend = function() {
+                            // Check if this was a manual stop
+                            const wasManualStop = !isRecording;
+                            
+                            // Update UI state regardless
+                            isRecording = false;
+                            voiceButton.classList.remove('text-purple-500');
+                            voiceButton.classList.add('text-gray-400');
+                            
+                            // Hide recording indicator
+                            const recordingIndicator = document.getElementById('recordingIndicator');
+                            if (recordingIndicator) {
+                                recordingIndicator.classList.add('hidden');
+                                recordingIndicator.classList.remove('recording');
+                            }
+                            
+                            // Remove any pulse animation classes (fallback animations)
+                            const pulseCircle1 = document.getElementById('pulseCircle1');
+                            const pulseCircle2 = document.getElementById('pulseCircle2');
+                            
+                            if (pulseCircle1) {
+                                pulseCircle1.classList.remove('pulse-animation-1');
+                            }
+                            
+                            if (pulseCircle2) {
+                                pulseCircle2.classList.remove('pulse-animation-2');
+                            }
+                            
+                            messageInput.classList.remove('border-purple-500');
+                            
+                            // Restore placeholder
+                            messageInput.placeholder = "Ask Luna";
+                            
+                            // If it was a manual stop and we have input, submit the form
+                            if (messageInput.value.trim() !== '') {
+                                // Copy the message to the hidden field for submission
+                                document.getElementById('messageField').value = messageInput.value;
+                                
+                                // Submit the form
+                                setTimeout(() => {
+                                    messageInput.form.submit();
+                                }, 100);
+                            }
+                        };
+                        
+                        // Handle errors
+                        recognition.onerror = function(event) {
+                            console.error('Speech recognition error:', event.error);
+                            isRecording = false;
+                            voiceButton.classList.remove('text-purple-500');
+                            voiceButton.classList.add('text-gray-400');
+                            
+                            // Hide recording indicator
+                            document.getElementById('recordingIndicator').classList.add('hidden');
+                            messageInput.classList.remove('border-purple-500');
+                        };
+                        
+                        // Toggle recording on button click
+                        voiceButton.addEventListener('click', function() {
+                            if (!isRecording) {
+                                // Start recording
+                                finalTranscript = ''; // Reset transcript
+                                messageInput.value = ''; // Clear input field
+                                
+                                try {
+                                    recognition.start();
+                                    isRecording = true;
+                                    
+                                    // Update visual indicators
+                                    voiceButton.classList.remove('text-gray-400');
+                                    voiceButton.classList.add('text-purple-500');
+                                    
+                                    // Show recording indicator
+                                    const recordingIndicator = document.getElementById('recordingIndicator');
+                                    recordingIndicator.classList.remove('hidden');
+                                    recordingIndicator.classList.add('recording');
+                                    
+                                    // Start the pulse animation
+                                    startPulseAnimation();
+                                    
+                                    // Add a listening state to the input
+                                    messageInput.placeholder = "Listening...";
+                                    
+                                    console.log('Voice recognition started');
+                                } catch (e) {
+                                    console.error('Failed to start voice recognition:', e);
+                                    alert('Unable to start voice recognition. Please try again.');
+                                }
+                            } else {
+                                // Set isRecording to false before stopping to signal this was a manual stop
+                                isRecording = false;
+                                
+                                // Stop recording
+                                try {
+                                    recognition.stop();
+                                } catch (e) {
+                                    console.error('Failed to stop voice recognition:', e);
+                                }
+                                
+                                // Update visual indicators
+                                voiceButton.classList.remove('text-purple-500');
+                                voiceButton.classList.add('text-gray-400');
+                                
+                                // Hide recording indicator
+                                const recordingIndicator = document.getElementById('recordingIndicator');
+                                recordingIndicator.classList.add('hidden');
+                                recordingIndicator.classList.remove('recording');
+                                
+                                // Restore placeholder
+                                messageInput.placeholder = "Ask Luna";
+                                
+                                // Submit the form if input is not empty
+                                if (messageInput.value.trim() !== '') {
+                                    // Copy to hidden field for submission
+                                    document.getElementById('messageField').value = messageInput.value;
+                                    
+                                    // Submit the form
+                                    console.log('Submitting form from voice recognition');
+                                    setTimeout(() => {
+                                        try {
+                                            chatForm.submit();
+                                            console.log('Form submitted successfully');
+                                        } catch (e) {
+                                            console.error('Form submission error:', e);
+                                        }
+                                    }, 100);
+                                }
+                                
+                                console.log('Voice recognition stopped');
+                            }
+                        });
+                    } else {
+                        // Browser doesn't support speech recognition
+                        voiceButton.addEventListener('click', function() {
+                            alert('Your browser does not support speech recognition.');
+                        });
+                        voiceButton.classList.add('opacity-50');
+                    }
+                });
+            </script>
+        </div>
+    </div>
+{% endblock content %}
